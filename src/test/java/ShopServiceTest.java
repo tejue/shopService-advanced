@@ -35,32 +35,27 @@ class ShopServiceTest {
         assertNull(actual);
     }
 
-    /*
     @Test
-    void findAllOrderByStatus_whenOrderStatusIsProcessing_thenReturnEquals() {
-        //GIVEN
-        //orderListRepo.addOrder(new Order("11", List.of(new Product("01", "Apple")), OrderStatus.PROCESSING));
-        Product product1 = new Product("11", "Banana");
-        ProductRepo pr1 = new ProductRepo();
-        pr1.addProduct(product1);
-        Order order1 = new Order("01", List.of(product1), OrderStatus.PROCESSING);
-        OrderMapRepo orderMapRepo = new OrderMapRepo();
-        orderMapRepo.addOrder(order1);
-        ShopService shopService = new ShopService();
+    void findAllOrdersByStatusTest_when1OrderStatusIsProcessing_thenReturn1() {
+        // GIVEN
+        ProductRepo productRepo = new ProductRepo();
+        OrderRepo orderRepo = new OrderMapRepo();
+        ShopService shopService = new ShopService(productRepo, orderRepo);
 
-        List<String> productIds = new ArrayList<>();
-        productIds.add("11");
+        Order order1 = new Order("01", List.of(new Product("a", "Apple"), new Product("b", "Banana")), OrderStatus.PROCESSING);
+        Order order2 = new Order("02", List.of(new Product("c", "Cacao"), new Product("d", "Dragonfruit")), OrderStatus.IN_DELIVERY);
+        Order order3 = new Order("03", List.of(new Product("e", "Eggplant"), new Product("f", "Fig")), OrderStatus.COMPLETED);
 
-        shopService.addOrder(productIds);
+        orderRepo.addOrder(order1);
+        orderRepo.addOrder(order2);
+        orderRepo.addOrder(order3);
 
-        //WHEN
-        List<Order> actual = shopService.findAllOrdersByStatus(OrderStatus.PROCESSING);
-        //THEN
-        List<Order> expected = List.of(order1);
-        assertEquals(1, actual.size());
+        // WHEN
+        List<Order> processingOrders = shopService.findAllOrdersByStatus(OrderStatus.PROCESSING);
 
+        // THEN
+        assertEquals(1, processingOrders.size());
     }
-*/
-
-
 }
+
+
