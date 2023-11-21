@@ -51,10 +51,10 @@ class ShopServiceTest {
         orderRepo.addOrder(order3);
 
         // WHEN
-        List<Order> processingOrders = shopService.findAllOrdersByStatus(OrderStatus.PROCESSING);
+        List<Order> actual = shopService.findAllOrdersByStatus(OrderStatus.PROCESSING);
 
         // THEN
-        assertEquals(1, processingOrders.size());
+        assertEquals(1, actual.size());
     }
 }
 
