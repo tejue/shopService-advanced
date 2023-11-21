@@ -53,11 +53,11 @@ public class ShopService {
         return orderRepo.addOrder(newOrder);
     }*/
 
-    public Order addOrder(List<String> productIds) throws Exception {
+    public Order addOrder(List<String> productIds) throws ProductNotFoundException {
         List<Product> products = new ArrayList<>();
         for (String productId : productIds) {
             Product productToOrder = productRepo.getProductById(productId)
-                    .orElseThrow(() -> new Exception("Product mit der Id: " + productId + " konnte nicht bestellt werden!");
+                    .orElseThrow(() -> new ProductNotFoundException("Product mit der Id: " + productId + " konnte nicht bestellt werden!");
             products.add(productToOrder);
         }
         Order newOrder = new Order(UUID.randomUUID().toString(), products, OrderStatus.PROCESSING);
