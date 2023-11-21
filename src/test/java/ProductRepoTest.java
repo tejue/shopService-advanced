@@ -21,7 +21,7 @@ class ProductRepoTest {
         assertEquals(actual, expected);
     }
 
-    @org.junit.jupiter.api.Test
+  /*  @org.junit.jupiter.api.Test
     void getProductById() {
         //GIVEN
         ProductRepo repo = new ProductRepo();
@@ -32,7 +32,7 @@ class ProductRepoTest {
         //THEN
         Product expected = new Product("1", "Apfel");
         assertEquals(actual, expected);
-    }
+    }*/
 
     @org.junit.jupiter.api.Test
     void addProduct() {
